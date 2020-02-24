@@ -40,21 +40,6 @@ AddEventHandler('playerDropped', function (reason)
     end
 end)
 
-RegisterCommand("debugtableserver",function()
-    print("blackjackTables")
-    print("===============")
-    print(dump(blackjackTables))
-    print("blackjackGameData")
-    print("===============")
-    print(dump(blackjackGameData))
-end)
-
-RegisterCommand("debugcarddata",function()
-    print("carddata")
-    print("===============")
-    print(dump(blackjackGameData[1024]))
-end)
-
 RegisterNetEvent("Blackjack:requestBlackjackTableData")
 AddEventHandler("Blackjack:requestBlackjackTableData", function()
     local source = source
@@ -246,13 +231,13 @@ for i=0,3,1 do
                                         blackjackGameData[gameId][source][2] = {}
                                         --print("initialize card count = 1")
                                         while nextCardCount >= 1 do
-                                            print("while card count >= 1 waiting for a response... cardCount is: " .. tostring(nextCardCount))
+                                            --print("while card count >= 1 waiting for a response... cardCount is: " .. tostring(nextCardCount))
                                             secondsWaited = 0
-                                            print("error debug #1")
-                                            print("gameId",gameId)
-                                            print(dump(blackjackGameData[gameId]))
-                                            print("=======")
-                                            while blackjackGameData[gameId][source][2][nextCardCount] == nil and secondsWaited < 10 do 
+                                            --print("error debug #1")
+                                            --print("gameId",gameId)
+                                            --print(dump(blackjackGameData[gameId]))
+                                            --print("=======")
+                                            while blackjackGameData[gameId][source][2][nextCardCount] == nil and secondsWaited < 20 do 
                                                 Wait(100)
                                                 secondsWaited = secondsWaited + 0.1
                                                 ----print("response to stand or hit is still false")
@@ -645,3 +630,18 @@ function dump(o)
        return tostring(o)
     end
  end
+
+-- RegisterCommand("debugtableserver",function()
+--     print("blackjackTables")
+--     print("===============")
+--     print(dump(blackjackTables))
+--     print("blackjackGameData")
+--     print("===============")
+--     print(dump(blackjackGameData))
+-- end)
+
+-- RegisterCommand("debugcarddata",function()
+--     print("carddata")
+--     print("===============")
+--     print(dump(blackjackGameData[1024]))
+-- end)
